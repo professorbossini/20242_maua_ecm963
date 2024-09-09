@@ -1,4 +1,5 @@
 import {
+  Alert,
   // Button,
   FlatList,
   Pressable,
@@ -41,12 +42,40 @@ export default function HomeScreen() {
 
   const remover = (lembrete: Lembrete) => {
     //antes de prosseguir, ela exibe um Alert (observe, que o Alert regular do React Native, não vai funcionar na web. Tente encontrar algum que funciona no npmjs.com)
-
+    // Alert.alert(
+    //   //titulo
+    //   'Remover lembrete',
+    //   //mensagem central
+    //   `Deseja remover este lembrete? ${lembrete.texto}`,
+    //   //coleção de botões
+    //   [
+    //     {
+    //       text: 'Cancelar',
+    //       style: 'cancel'
+    //     },
+    //     {
+    //       text: 'Remover',
+    //       style: 'destructive',
+    //       onPress: () => {
+    //         setLembretes(
+    //           lembretesAtual => lembretesAtual.filter(item => item.id !== lembrete.id)
+    //         )  
+    //       }
+    //     }
+    //   ]
+    // )
+    setLembretes(
+      lembretesAtual => lembretesAtual.filter(item => item.id !== lembrete.id)
+    )
     //buscar o lembrete a ser removido na lista, usando o seu id
 
     //remover ele da lista
 
     //atualizar a variável de estado lembretes, causando nova atualização gráfica da FlatList
+  }
+
+  const atualizar = () => {
+    
   }
 
   return (
@@ -79,7 +108,8 @@ export default function HomeScreen() {
               </Text>
               <View
                 style={styles.listItemButtons}>
-                <Pressable>
+                <Pressable
+                  onPress={() => remover(l.item)}>
                   <AntDesign 
                     name='delete'
                     size={24}
